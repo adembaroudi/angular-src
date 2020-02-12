@@ -24,6 +24,7 @@
               "src/assets"
             ],
             "styles": [
+              "src/custom-theme.scss",
               "src/styles.css"
             ],
             "scripts": []
@@ -120,6 +121,125 @@
           }
         }
       }
-    }},
+    },
+    "folder1": {
+      "projectType": "application",
+      "schematics": {},
+      "root": "projects/folder1",
+      "sourceRoot": "projects/folder1/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/folder1",
+            "index": "projects/folder1/src/index.html",
+            "main": "projects/folder1/src/main.ts",
+            "polyfills": "projects/folder1/src/polyfills.ts",
+            "tsConfig": "projects/folder1/tsconfig.app.json",
+            "aot": false,
+            "assets": [
+              "projects/folder1/src/favicon.ico",
+              "projects/folder1/src/assets"
+            ],
+            "styles": [
+              "projects/folder1/src/styles.css"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/folder1/src/environments/environment.ts",
+                  "with": "projects/folder1/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "folder1:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "folder1:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "folder1:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/folder1/src/test.ts",
+            "polyfills": "projects/folder1/src/polyfills.ts",
+            "tsConfig": "projects/folder1/tsconfig.spec.json",
+            "karmaConfig": "projects/folder1/karma.conf.js",
+            "assets": [
+              "projects/folder1/src/favicon.ico",
+              "projects/folder1/src/assets"
+            ],
+            "styles": [
+              "projects/folder1/src/styles.css"
+            ],
+            "scripts": []
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/folder1/tsconfig.app.json",
+              "projects/folder1/tsconfig.spec.json",
+              "projects/folder1/e2e/tsconfig.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        },
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "projects/folder1/e2e/protractor.conf.js",
+            "devServerTarget": "folder1:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "folder1:serve:production"
+            }
+          }
+        }
+      }
+    }
+  },
   "defaultProject": "dayFive"
 }

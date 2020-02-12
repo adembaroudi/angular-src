@@ -1,0 +1,79 @@
+<br>
+<br>
+<br>
+<br>
+<table class="table table-borderless table-dark">
+  <thead>
+    <tr>
+      <th scope="col">First</th>
+      <th scope="col">Last</th>
+      <th scope="col">email</th>
+      <th scope="col">mobile</th>
+      <th scope="col">password</th>
+      <th scope="col">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let adem of parentevent ; let i=index ">
+      <td>{{adem.firstName}}</td>
+      <td>{{adem.lastName}}</td>
+      <td>{{adem.email}}</td>
+      <td>{{adem.mobile}}</td>
+      <td>{{adem.password}}</td>
+
+      <td>
+        <div class="example-button-row">
+        <button mat-raised-button  class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal"(click)="edit(i)" >EDIT</button>
+        <button mat-raised-button class="btn btn-danger btn-lg" (click)="delete(i)">DELETE</button>
+
+      </div></td>
+    </tr>
+  </tbody>
+</table>
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4>Edit Informations<span class="badge badge-secondary">New</span></h4>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="editForm">
+          <mat-form-field>
+            <input matInput type="text" formControlName="firstName" placeholder="First Name"   required/>
+            <mat-error *ngIf="editForm.hasError('required', 'firstName')">First Name  is required </mat-error>
+          </mat-form-field>
+          <mat-form-field>
+          <input matInput formControlName="lastName"  placeholder="Last Name"  required/>
+          <mat-error *ngIf="editForm.hasError('required','lastName')" >Last Name  is required </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput formControlName="email"  placeholder="Email"  required/>
+          <mat-error *ngIf="editForm.hasError('required','email')" >Email is required </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput formControlName="mobile"  placeholder="Mobile"  required/>
+          <mat-error *ngIf="editForm.hasError('required','mobile')" >Mobile is required </mat-error>
+        </mat-form-field>
+        <mat-form-field >
+          <input matInput [type]="hide ? 'password' : 'text'" formControlName="password"  placeholder="Password"  required/>
+          <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+          <mat-error *ngIf="editForm.hasError('required','password')" >Password  is required </mat-error>
+          <mat-error *ngIf="editForm.hasError('minLength','password')" >Password  is required tj</mat-error>
+
+        </mat-form-field>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button mat-raised-button class="btn btn-success"data-dismiss="modal"(click)="update()">UPDATE</button>
+    </div>
+  </div>
+
+</div>
+</div>
+
+
+
+

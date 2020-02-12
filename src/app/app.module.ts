@@ -3,14 +3,31 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ParentsComponent } from './parents/parents.component';
+import { FormsComponent } from './parents/forms/forms.component';
+import { TableComponent } from './parents/table/table.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import {MatFormFieldModule,  MatSelectModule,  MatInputModule, MatIconModule } from '@angular/material';
+
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+
+    ParentsComponent,
+    FormsComponent,
+    TableComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatSelectModule,
+    BrowserAnimationsModule,
+    MatIconModule
   ],
   providers: [],
   bootstrap: [AppComponent]
